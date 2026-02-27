@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Message Broker for Agent Communication
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+
+  # Time-Series Database for Market Data
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    environment:
+      POSTGRES_USER: quant_user
+      POSTGRES_PASSWORD: secure_password
+      POSTGRES_DB: market_data
+    ports:
+      - "5432:5432"
+
+  # In-Memory Cache for Agent State & Order Books
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  # LLM Orchestrator Service
+  agent_orchestrator:
+    build: ./orchestrator
+    environment:
+      - LLM_PROVIDER=gemini-3.1-pro # Or claude-opus/codex
+      - API_KEY=${AI_API_KEY}
+      - KAFKA_BROKER=kafka:9092
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - kafka
+      - redis

@@ -1,135 +1,85 @@
-# Multi-Agent-Trading-System
+# SwarmAlpha: Institutional Multi-Agent Trading System
 
-# Quant-Committee: Multi-Asset Trading MAS
+SwarmAlpha is a state-of-the-art agentic framework designed for high-conviction trading across diverse asset classes. By utilizing a "Council of Agents" approach, SwarmAlpha bridges the gap between raw quantitative power and institutional-grade governance.
+Originally focused on Equities, the platform is engineered to scale into Private Credit, Bonds, and Tokenized Financial Assets.
 
 Quant-Committee is an agentic framework designed to simulate an institutional Investment Committee. Unlike traditional "black box" algorithmic trading, this system orchestrates a debate between specialized AI agents—Fundamental, Technical, and Risk Analysts—to execute trades across Equities, Bonds, and Digital Assets.
 The project features a self-correcting Agentic Software Engineering (ASE) environment, allowing the system to inspect, generate, and audit its own strategy code before deployment.
 
-## 🏗 Architectural Vision
-The system operates on two distinct planes:
+## 🚀 Mission Statement
 
-### 1. The Trading Plane ("The Investment Committee")
-We replace the single-model paradigm with a Council of Agents:
-  * The Analyst Layer: Specialized agents (Fundamental, Technical, Macro) that ingest distinct data streams (10-Ks, Price Action, Fed Minutes) and output signals.
-  * The Governance Layer: An adversarial "Debate Protocol" where Bull and Bear agents argue their cases.
-  * The Execution Layer: A Portfolio Manager (PM) agent acting as the "Judge," weighing conviction against the current regime (e.g., favoring fundamentals during earnings season).
+To empower institutional and retail investors with a modular, transparent, and self-evolving AI trading ecosystem. SwarmAlpha doesn't just execute trades; it debates them, audits them, and manages risk through a multi-layered agentic hierarchy.
 
-### 2. The Engineering Plane ("The Factory")
-A CI/AI pipeline that builds the strategies:
- *Architect Agent: Breaks requirements into technical specs.
- *Developer Agent: Writes Python code (using Decimal for precision).
- *Auditor Agent: Reviews code for financial "smells" (Look-ahead bias, floating point errors) and security flaws.
- *Sandbox (Executor): Runs code in isolated Docker containers/E2B to verify safety.
 
- ## 🚀 Key Capabilities
+ ## 🏛 Platform Architecture
 
-* Multi-Asset Abstraction: Generic Instrument classes allowing seamless analysis of:
-  * Equities: Valuation (P/E, PEG), Earnings Calls, Insider Activity.
-  * Bonds: Yield Spreads, Duration, Credit Ratings.
-  * Digital Assets: Tokenomics (Burn/Mint), TVL, On-chain Activity.
-* Tiered Model Routing:
-  *Reasoning: GPT-5 / o1 for complex logic (PM decisions, Bond Math).
-  *Context: Claude 3.5 for analyzing long documents (Prospectuses).
-  *Coding: DeepSeek-V3 for cost-efficient code generation loops.
-* Guardrails First:
-  * Strict Auditor_Node implementation in LangGraph.
-  * Automated "Hallucination Checks" for trade sizing.
+SwarmAlpha is divided into two operational planes:
 
+### 1. The Trading Plane (Runtime)
+An asynchronous, event-driven orchestrator (powered by LangGraph) that manages the lifecycle of a trade:
+    * The Analyst Layer: Specialized agents for Fundamental, Technical, and Sentiment analysis.
+    * The Governance Layer: A Chief Risk Officer (CRO) agent that performs "Hallucination Checks," VaR analysis, and compliance verification.
+    * The Execution Layer: Secure routing to brokerages and DeFi protocols via a standardized SDK
+
+### 2. The Engineering Plane (The Factory)
+A self-correcting software environment that treats trading strategies as code:
+    * Architect Agent: Designs technical specifications for new market regimes.
+    * Developer Agent: Generates and refines strategy code in sandboxed environments.
+    * Auditor Agent: Reviews code for financial "smells" (e.g., look-ahead bias) before deployment.
+   
 ## 🛠 Tech Stack  
-* Orchestration: LangGraph (Stateful Multi-Agent workflows)
-* LLMs: OpenAI (Reasoning), Anthropic (Context), DeepSeek (Code).
-* Data Layer:
-  * Time-Series: TimescaleDB / Polygon.io
-  * Unstructured: Pinecone (Vector DB for News/Filings)
-* Sandboxing: Docker / E2B
-* Backtesting: Backtrader / Lean (QuantConnect) 
+* Orchestration: LangGraph / Python 3.11+
+* LLM Cognitive Engines: Gemini 3.1 Pro Code Agent, Claude 3.5 Opus, OpenAI o1
+* Data Streaming: Apache Kafka / Redis
+* Databases: TimescaleDB (Time-series), Pinecone (Vector/News), PostgreSQL (Metadata)
+* Infrastructure: Docker, Kubernetes, E2B (Sandboxing)
 
-# 📂 Repository Structure
+# 📈 Key Features & Roadmap
 
+## Core Features
+* Adversarial Debate Protocol: Bull and Bear agents must reach a consensus or provide a weighted conviction score before execution.
+* Advanced Risk Guardrails: Real-time margin utilization monitoring and portfolio-wide exposure limits.
+* Custom SDK/API: A plug-and-play interface for Quantitative Funds to inject proprietary alpha signals into the Swarm.
 
-```quant-committee/
+## Asset Roadmap
+1. Phase I (Current): Equities & ETFs (NYSE/NASDAQ).
+2. Phase II: Fixed Income (Bonds) & Private Credit (Document-heavy analysis).
+3. Phase III: Tokenized Assets & RWA (Real World Assets) integration.
 
-├── .github/workflows/         # CI/CD pipelines
-
-├── core/
-│   ├── agents/           # Agent definitions (Fundamental, Risk, Tech)
-
-│   ├── memory/           # Redis/Vector DB connectors
-│   └── instruments/      # Asset class abstractions (Equity, Bond, Token)
-
-├── factory/              # The Agentic Engineering Loop
-
-│   ├── architect.py      # Spec generation
-
-│   ├── auditor.py        # Financial logic verification
-
-│   └── sandbox/          # Docker execution environment
-
-├── strategies/           # Generated trading strategies (Output of Factory)
-
-└── main.py               # Entry point for the Trading Engine
-```
-
-# ⚡ Getting Started
-
-## Prerequisites
-* Python 3.11+
-* Docker (for local sandboxing)
-* API Keys: OpenAI, Anthropic, Financial Data Provider (e.g., Polygon/Alpaca)
-
-## Installation
-1 Clone the Repository
+# 📦 Installation & Quick Start
 
 ```
-git clone https://github.com/your-org/quant-committee.git
+# Clone the repository
+git clone https://github.com/Algorithmic-Token/SwarmAlpha.git
 
-cd quant-committee
-```
+# Install core dependencies
+pip install -r requirements.txt
 
-2 Set up Environment
-
-```
-cp .env.example .env  //Edit .env with your API keys//
-```
-
-
-3 Run the "Factory" (Generate a Strategy)
-To spin up the Agentic Engineering loop that builds a new strategy:
+# Configure your environment
+cp .env.example .env
+# Add your AI_API_KEY and Broker credentials
 
 ```
-python -m factory.main --request "Create a mean-reversion strategy for US10Y Bonds using RSI divergence"
-````
 
-
-4 Run the Trading Engine (Live/Paper)
+## Running the Orchestrator
 
 ```
-python main.py --mode paper --portfolio "Conservative_Mix"
+from core.orchestrator import SwarmOrchestrator
+
+swarm = SwarmOrchestrator(mode="paper_trading")
+swarm.run(ticker="AAPL")
+
 ```
 
+# 💼 Business & Revenue Model
 
-# 🗺 Roadmap
+* SwarmAlpha operates on a dual-model approach:
+* Subscription: Tiered API/SDK access for developers and quant funds.
+* Performance-Sharing: A percentage-based fee on profits generated via the platform's proprietary "Swarm Intelligence" strategies.
 
-* [x] Phase 1: Core Architecture & Analyst Agent Prompts (Equities/Bonds/Crypto).
-* [x] Phase 2: Agentic Engineering Boilerplate (LangGraph Factory).
-* [ ] Phase 3: Sandbox Integration (Docker/E2B) & Backtesting Engine connection.
-* [ ] Phase 4: Live Data Ingestion Pipelines (WebSockets).
-* [ ] Future: Expansion to Private Credit (Document-heavy analysis).
+# ⚖️ Disclaimer
 
-# ⚠️ Disclaimer
-This software is for educational and research purposes only. It is not financial advice. The "Auditor Agent" significantly reduces but does not eliminate the risk of algorithmic error. Use with paper money or strictly limited capital until fully validated.
-
-
-
-
-
-
-
-
-
-
-
-
+__Trading financial assets involves significant risk. SwarmAlpha is a tool for professional and informed investors. Past performance of AI agents is not indicative of future results.__
 
 
 

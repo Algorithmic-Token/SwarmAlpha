@@ -79,7 +79,7 @@ swarm.run(ticker="AAPL")
 
 # ⚖️ Disclaimer
 
-__Trading financial assets involves significant risk. SwarmAlpha is a tool for professional and informed investors. Past performance of AI agents is not indicative of future results.__
+_Trading financial assets involves significant risk. SwarmAlpha is a tool for professional and informed investors. Past performance of AI agents is not indicative of future results._
 
 
 

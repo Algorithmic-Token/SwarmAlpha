@@ -6,6 +6,23 @@ Originally focused on Equities, the platform is engineered to scale into Private
 Quant-Committee is an agentic framework designed to simulate an institutional Investment Committee. Unlike traditional "black box" algorithmic trading, this system orchestrates a debate between specialized AI agents—Fundamental, Technical, and Risk Analysts—to execute trades across Equities, Bonds, and Digital Assets.
 The project features a self-correcting Agentic Software Engineering (ASE) environment, allowing the system to inspect, generate, and audit its own strategy code before deployment.
 
+# SwarmAlpha: Institutional Multi-Agent Trading System
+
+SwarmAlpha is a state-of-the-art agentic framework designed for high-conviction trading across diverse asset classes. By utilizing a "Council of Agents" approach, SwarmAlpha bridges the gap between raw quantitative power and institutional-grade governance. 
+
+Originally focused on Equities, the platform is engineered to scale into Private Credit, Bonds, and Tokenized Financial Assets.
+
+---
+
+## ⚠️ The Problem: The Convergence Crisis in Multi-Asset Trading
+
+Financial participants today face a three-fold crisis:
+1. **Cognitive Overload:** The sheer volume of unstructured alternative data (sentiment, macro-news, document-heavy credit) exceeds the processing power of traditional algorithms and human analysts.
+2. **The Governance Gap:** Legacy trading bots use single-track logic, lacking the checks-and-balances of an adversarial "Investment Committee" approach, leading to unmanaged 'hallucination' risks in automated execution.
+3. **Cross-Asset Friction:** Moving capital between liquid Equities and illiquid Tokenized Assets currently requires disjointed systems, preventing a unified, risk-adjusted view of a multi-asset portfolio.
+
+**The Solution:** SwarmAlpha solves this *Trust and Scalability Gap*. By utilizing a decentralized swarm of agents, it provides the adversarial reasoning of a professional investment committee combined with the execution speed of a machine-learning engine.
+
 ## 🚀 Mission Statement
 
 To empower institutional and retail investors with a modular, transparent, and self-evolving AI trading ecosystem. SwarmAlpha doesn't just execute trades; it debates them, audits them, and manages risk through a multi-layered agentic hierarchy.

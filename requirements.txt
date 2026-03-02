@@ -1,0 +1,36 @@
+# ==========================================
+# SwarmAlpha Core Requirements
+# ==========================================
+
+# Core Orchestration & AI Frameworks
+langgraph>=0.0.26
+langchain>=0.1.10
+langchain-core>=0.1.28
+langchain-google-genai>=0.0.9   # For Gemini 3.1 Pro Code Agent
+langchain-anthropic>=0.1.4      # For Claude Opus/3.5
+langchain-openai>=0.0.8         # For OpenAI o1
+
+# Data Processing & Math
+pandas>=2.2.0
+numpy>=1.26.4
+pydantic>=2.6.3                 # Strict JSON schema validation for Agents
+
+# Databases & Infrastructure
+redis>=5.0.1                    # State caching & Short-term memory
+confluent-kafka>=2.3.0          # High-throughput data streaming
+psycopg2-binary>=2.9.9          # TimescaleDB / PostgreSQL connector
+pinecone-client>=3.1.0          # Vector DB for Private Credit/News ingestion
+
+# Trading APIs & Market Data
+yfinance>=0.2.36                # Mock data / Retail Equities
+ccxt>=4.2.24                    # Crypto/Tokenized Assets
+alpaca-trade-api>=3.1.1         # Paper trading & Execution
+ib_insync>=0.9.86               # Institutional Execution (Interactive Brokers)
+
+# Agentic Software Engineering (The Factory)
+e2b>=0.14.0                     # Secure sandboxing for code execution
+python-dotenv>=1.0.1            # Environment variable management
+
+# Async & API Serving
+fastapi>=0.110.0
+uvicorn>=0.27.1
